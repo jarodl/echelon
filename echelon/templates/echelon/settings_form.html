@@ -1,0 +1,68 @@
+{% extends "cms/base.html" %}
+
+{% block content %}
+<div id="articlebg">
+  <div id="article">
+
+    <div id="art_top">
+      <span class="title">Site settings:</span>
+    </div>
+
+    <form action="." method="post">
+      {{ form.as_p }}
+      <ul class="site_variables">
+      {% for f in forms %}
+          <li>{{ f.as_p }}</li>
+      {% endfor %}
+      </ul>
+      <a id="add_site_variable" href="#">Add Site Variable</a>
+
+      <br />
+
+    <input type="submit" class="button" value="save" />
+    </form>
+
+  </div>
+  <!-- end article -->
+
+  <div id="marginleft">
+    <div id="infobar">
+    </div>
+    <!-- end infobar -->
+  </div>
+  <!-- end marginleft -->
+
+</div>
+<!-- articlebg -->
+{% endblock %}
+
+{% block javascript %}
+  <script type="text/javascript">
+    $(function() {
+        var site_variable_form;
+
+        $(document).ready(function() {
+            site_variable_form = '{{ blank_form.as_p|addslashes|linebreaksbr }}'
+        });
+
+        var add_site_variable = $('#add_site_variable');
+        var sv_list = $('.site_variables');
+
+        var count = 1;
+
+        add_site_variable.click(function() {
+            this.$OuterDiv = $('<li></li>')
+              .html(site_variable_form)
+            ;
+            this.$OuterDiv.children().each(function() {
+                $(this).children().each(function() {
+                    $(this).attr("for", $(this).attr("for") + "-" + count);
+                    $(this).attr("id", $(this).attr("id") + "-" + count);
+                });
+            });
+            sv_list.append(this.$OuterDiv);
+            count++;
+        });
+    });
+  </script>
+{% endblock %}

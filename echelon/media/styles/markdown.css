@@ -1,0 +1,182 @@
+form .markdown {
+    padding: .75em;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+.markdown * {
+    line-height: 1.4em
+}
+
+.markdown em {
+    padding: 0 0.08em;
+	font-style: italic
+}
+
+.markdown i {
+    font-style: italic
+}
+
+.markdown strong,.markdown b {
+    font-weight: bold
+}
+
+.markdown abbr {
+    border-bottom: 1px dashed;
+    cursor: help
+}
+
+.markdown small {
+    font-size: 0.8em
+}
+
+.markdown h1,.markdown h2,.markdown h3,.markdown h4,.markdown h5,.markdown h6 {
+    margin-bottom: 0.5em
+}
+
+.markdown h1 {
+    font-size: 170%;
+    font-weight: bold
+}
+
+.markdown h2 {
+    font-size: 150%;
+    font-weight: bold
+}
+
+.markdown h3 {
+    font-size: 114%;
+    font-weight: bold
+}
+
+.markdown h4 {
+    color: #777;
+    font-weight: bold
+}
+
+.markdown h5 {
+    color: #777
+}
+
+.markdown h6 {
+    color: #777;
+    font-size: 90%
+}
+
+.markdown a {
+    text-decoration: underline
+}
+
+.markdown p {
+    line-height: 1.5em;
+    margin: 0 0 1em
+}
+
+.markdown ul ul,.markdown ol ol {
+    margin-bottom: 0;
+    margin-top: 0
+}
+
+.markdown ul,.markdown ol {
+    margin: 0 0 2em 0.5em
+}
+
+.markdown ul li,.markdown ol li {
+    margin-left: 1em
+}
+
+.markdown ul li {
+    list-style: disc;
+	font-size:13px
+}
+
+.markdown ol li {
+    list-style: decimal
+}
+
+.markdown blockquote {
+    border-left: 5px solid #ddd;
+    color: #555;
+    margin: 0 0 1em;
+    padding-left: 0.6em
+}
+
+.markdown dt {
+    font-weight: bold;
+    margin-left: 1em
+}
+
+.markdown dd {
+    margin-bottom: 1em;
+    margin-left: 2em
+}
+
+.markdown table {
+    margin: 0 0 1em;
+    width: 100%
+}
+
+.markdown table th {
+    background: #eee;
+    border-bottom: 1px solid #bbb;
+    padding: 0.2em 1em
+}
+
+.markdown table td {
+    border-bottom: 1px solid #ddd;
+    padding: 0.2em 1em
+}
+
+.markdown pre {
+   	background-color: #f0f0f0;
+    border: 1px solid #c0c0c0;
+    color: #3b3b3b;
+	font-family: 'Inconsolata', Courier, monospace;
+    font-size: 0.8em;
+    line-height: 1.5em;
+    margin: 0 0 2em;
+    overflow: auto;
+    padding: 0.5em
+}
+
+.markdown pre code {
+   	background-color: #f0f0f0;
+    border: medium none;
+    font-size: 13px;
+    padding: 10px 14px 10px 30px;
+}
+
+.markdown code {
+    background-color: #f0f0f0;
+    border: 1px solid #c0c0c0;
+    color: #3b3b3b;
+    padding: 0.1em 0.8em;
+	font-family: 'Inconsolata', Courier, monospace;
+	display:inline-block;
+	margin: 2px 0;
+}
+
+.markdown pre.console {
+    background-color: #000;
+    color: white;
+    font-size: 90%;
+    line-height: 1.5em;
+    margin: 0 0 1em;
+    padding: 0.5em
+}
+
+.markdown pre.console code {
+    background-color: #000;
+    border: medium none;
+    color: #fff;
+    font-size: 100%;
+    padding: 0
+}
+
+.markdown pre.console span {
+    color: #888
+}
+
+.markdown pre.console span.command {
+    color: yellow
+}

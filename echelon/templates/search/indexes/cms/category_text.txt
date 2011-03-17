@@ -1,0 +1,5 @@
+{{ object.title }}
+{{ object.desc }}
+{{ object.content }}
+{{ object.parent.title }}
+{{ object.parent.desc }}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Echelon | {{ page.root_category }} - {{ page.title }}{% endblock %}
+
+{% block javascript %}
+  {{ page.script|safe }}
+{% endblock %}
+
+{% block base-sidebar %}
+    <div id="breadcrumb">
+      <a href="/"><span id="breadhome"></span></a>
+      <a id="breadcat" href="{{ page.root_category.get_absolute_url }}">{{ page.root_category }}</a>
+    </div>
+    <div class="clear"></div>
+    <ul id="sidenav">
+      {% for child in page.root_category.category_set.all %}
+        <li><a href="{{ child.get_absolute_url }}">{{ child }}</a></li>
+      {% endfor %}
+    </ul>
+    <!-- end ul sidenav -->
+{% endblock %}
+
+{% block base-content %}
+  {% load echelon_helpers %}
+  {% load markup %}
+
+  <div id="article">
+    <div id="art_top">
+      <span class="title">{{ page }}</span>
+    </div>
+    <!-- end art_top -->
+
+    <div class="markdown">
+      {{ page.content|custom_variables:request|markdown }}
+    </div>
+  </div>
+
+  <div id="marginleft">
+
+    <div id="infobar">
+      <p>Posted In
+      {% for item in page.category.all %}
+        <a href="{{ item.get_absolute_url }}">{{ item }}</a>{% if not forloop.last %},{% endif %}
+      {% endfor %}
+      <span class="right">Last updated: {{ page.updated }}</span>
+      </p>
+    </div>
+    <!-- end infobar -->
+  </div>
+  <!-- end marginleft -->
+{% endblock %}

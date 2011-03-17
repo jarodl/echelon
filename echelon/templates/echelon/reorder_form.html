@@ -1,0 +1,39 @@
+{% extends "cms/base.html" %}
+
+{% block content %}
+<div id="articlebg">
+  <div id="article">
+
+    <div id="art_top">
+      <span class="title">Reorder:</span>
+      <p>Drag and drop to change the order.</p>
+    </div>
+
+    <form action="." method="post">
+      <ul id="sortable">
+      {% for form in forms %}
+        <li>
+          <label>{{ form.instance.title }}</label>
+          {{ form.order }}
+        </li>
+      {% endfor %}
+      </ul>
+    <input id="sortable_button" type="submit" class="button" value="save" />
+    </form>
+
+  </div>
+  <!-- end article -->
+
+  <div id="marginleft">
+    <div id="infobar">
+    </div>
+    <!-- end infobar -->
+  </div>
+  <!-- end marginleft -->
+
+</div>
+<!-- articlebg -->
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <style type="text/css"> @import "/media/styles/master.css"; </style>
+    <style type="text/css"> @import "/media/styles/markdown.css"; </style>
+    <script src="/static/javascripts/jquery.js" type="text/javascript"></script>
+    <script src="/static/javascripts/jquery-ui.js" type="text/javascript"></script>
+    <script src="/static/javascripts/showdown.js" type="text/javascript"></script>
+    <script src="/static/javascripts/application.js" type="text/javascript"></script>
+
+    {% block javascript %}
+    {% endblock %}
+
+    {{ global_javascript|safe }}
+  </head>
+  <body>
+    <div id="header">
+      <div id="local-nav">
+        <div class="container">
+          <h1 id="title">{{ ECHELON_TITLE }}</h1>
+        </div>
+      </div>
+      <!-- end local-nav -->
+    </div>
+    <!-- end header -->
+    <div id="content">
+      <div class="container">
+        <div id="docs-nav">
+          {% include "root_categories.html" %}
+        </div>
+        <!-- end nav -->
+        <div class="clear"></div>
+        <div class="box">
+          <div id="sidebar">
+            {% block base-sidebar %}
+            {% endblock %}
+          </div>
+          <div id="page">
+            <div id="articlebg">
+              {% block base-content %}
+              {% endblock %}
+            </div>
+            <!-- end articlebg -->
+          </div>
+          <!-- end page -->
+        </div>
+        <!-- end box -->
+      </div>
+      <!-- end container -->
+    </div>
+    <!-- end content -->
+    <div id="footer">
+      <div class="container">
+        <p class="copyright">Powered by <a href="http://github.com/disqus/echelon">Echelon {{ ECHELON_VERSION }}</a></p>
+        <ul>
+          <li><a href="/admin">Admin</a></li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<div id="nav">
+  <ul>
+    {% for item in root_categories %}
+      <!-- FIXME: This is nasty. Hopefully this will get fixed when I re-factor the models -->
+      {% if item.id == category.root_category.id or item.id == page.root_category.id or item.id == category.id %}
+        <li><a class="current" href="{{ item.get_absolute_url }}">{{ item }}</a></li>
+      {% else %}
+        <li><a href="{{ item.get_absolute_url }}">{{ item }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if category.slug == 'index' %}
+      <li><a class="current" href="/">Home</a></li>
+    {% else %}
+      <li><a href="/">Home</a></li>
+    {% endif %}
+  </ul>
+</div>
+<!-- ending nav -->

@@ -1,0 +1,54 @@
+<div id="articlebg">
+
+  <div id="article">
+  
+    <div id="art_top">
+      <span class="title">Search results for '{{ query }}'</span>
+    </div>
+    <!-- end art_top -->
+    {% load markup %}
+ 
+    <ul id="searchview">
+        {% for result in page_results %}
+          <li class="results">
+            <a href="{{ result.get_absolute_url }}">{{ result.title }}</a>
+            <span class="right">Found in 
+            {% for cat in result.category.all %}
+              <a
+                href="{{ cat.get_absolute_url }}">{{ cat}}</a>{% if not forloop.last %},{% endif %}
+            {% endfor %}
+            </span>
+            <p class="snippet">...{{ result.snippet|markdown|striptags }}...</p>
+          </li>
+        {% endfor %}
+        {% for result in category_results %}
+          <li class="results">
+            <a href="{{ result.get_absolute_url }}">{{ result.title }}</a>
+            {% if result.parent %}
+              <span class="right">Found in 
+              <a href="{{ result.parent.get_absolute_url }}">{{ result.parent }}</a>
+              </span>
+            {% endif %}
+            <p class="snippet">...{{ result.snippet|markdown|striptags }}...</p>
+          </li>
+        {% endfor %}
+        {% if not category_results and not page_results %}
+           <li>No results found..</li>
+        {% endif %}
+    </ul>
+
+  </div>
+  <!-- end article -->
+
+  <div id="marginleft">
+
+    <div id="infobar">
+
+    </div>
+    <!-- end infobar -->
+
+  </div>
+  <!-- end marginleft -->
+
+</div>
+<!-- end articlebg -->
