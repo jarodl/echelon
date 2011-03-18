@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load echelon_helpers %}
 
 {% block title %}Echelon | {{ page.root_category }} - {{ page.title }}{% endblock %}
 
@@ -9,19 +10,13 @@
 {% block base-sidebar %}
     <div id="breadcrumb">
       <a href="/"><span id="breadhome"></span></a>
-      <a id="breadcat" href="{{ page.root_category.get_absolute_url }}">{{ page.root_category }}</a>
+      {% breadcrumb_for page %}
     </div>
     <div class="clear"></div>
-    <ul id="sidenav">
-      {% for child in page.root_category.category_set.all %}
-        <li><a href="{{ child.get_absolute_url }}">{{ child }}</a></li>
-      {% endfor %}
-    </ul>
-    <!-- end ul sidenav -->
+    {% child_categories_of page.root_category %}
 {% endblock %}
 
 {% block base-content %}
-  {% load echelon_helpers %}
   {% load markup %}
 
   <div id="article">
@@ -39,7 +34,7 @@
 
     <div id="infobar">
       <p>Posted In
-      {% for item in page.category.all %}
+      {% for item in page.categories.all %}
         <a href="{{ item.get_absolute_url }}">{{ item }}</a>{% if not forloop.last %},{% endif %}
       {% endfor %}
       <span class="right">Last updated: {{ page.updated }}</span>

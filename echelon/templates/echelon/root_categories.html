@@ -8,7 +8,7 @@
         <li><a href="{{ item.get_absolute_url }}">{{ item }}</a></li>
       {% endif %}
     {% endfor %}
-    {% if category.slug == 'index' %}
+    {% if category.slug == 'index' or page.root_category.slug == 'index' %}
       <li><a class="current" href="/">Home</a></li>
     {% else %}
       <li><a href="/">Home</a></li>

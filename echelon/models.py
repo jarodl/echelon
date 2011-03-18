@@ -81,7 +81,7 @@ class Page(models.Model):
         Returns the highest level category that this page belongs in.
 
         """
-        parent = self.category.all()[0]
+        parent = self.categories.all()[0]
         while parent.parent is not None:
             parent = parent.parent
         return parent

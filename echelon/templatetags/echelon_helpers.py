@@ -25,10 +25,10 @@ def custom_variables(value, request):
     return t.render(Context(lookup_table))
 
 @register.inclusion_tag('breadcrumb.html')
-def breadcrumb_for(category):
-    if category.root_category():
-        category = category.root_category()
-    return {'category': category}
+def breadcrumb_for(obj):
+    if obj.root_category():
+        obj= obj.root_category()
+    return {'object': obj}
 
 @register.inclusion_tag('child_categories.html')
 def child_categories_of(category):
