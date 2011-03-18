@@ -1,32 +1,18 @@
 {% extends "base.html" %}
+{% load echelon_helpers %}
 
 {% block title %}Echelon | {{ category.title }}{% endblock %}
 
 {% block base-sidebar %}
   <div id="breadcrumb">
     <a href="/"><span id="breadhome"></span></a>
-    {% if category.root_category %}
-      <a id="breadcat" href="{{ category.root_category.get_absolute_url }}">{{ category.root_category }}</a>
-    {% else %}
-      <a id="breadcat" href="{{ category.get_absolute_url }}">{{ category }}</a>
-    {% endif %}
+    {% breadcrumb_for category %}
   </div>
   <div class="clear"></div>
-  <!-- end breadcrumbs -->
-  <ul id="sidenav">
-    {% for child in category.root_category.category_set.all %}
-      <li><a href="{{ child.get_absolute_url }}">{{ child }}</a></li>
-      {% empty %}
-      {% for child in category.category_set.all %}
-        <li><a href="{{ child.get_absolute_url }}">{{ child }}</a></li>
-      {% endfor %}
-    {% endfor %}
-  </ul>
-  <!-- end ul sidenav -->
+  {% child_categories_of category %}
 {% endblock %}
 
 {% block base-content %}
-  {% load echelon_helpers %}
   {% load markup %}
 
   <div id="article">
@@ -41,23 +27,8 @@
     {% endif %}
 
     <!-- end art_top -->
-    {% if not category.hide_links %}
-      <ul class="result">
-        {% for page in category.page_set.all %}
-          <li><a href="{{ page.get_absolute_url }}">{{ page }}</a></li>
-        {% endfor %}
-      </ul>
-      {% for item in category.category_set.all %}
-        <div class="resultblock">
-          <span class="resultcat"><a href="{{ item.get_absolute_url }}">{{ item }}</a></span>
-          <ul>
-            {% for page in item.page_set.all %}
-              <li><a href="{{ page.get_absolute_url }}">{{ page }}</a></li>
-            {% endfor %}
-          </ul>
-        </div>
-      {% endfor %}
-    {% endif %}
+    {% pages_for category %}
+    {% subcategories_for category %}
   </div>
 
   <div id="marginleft">

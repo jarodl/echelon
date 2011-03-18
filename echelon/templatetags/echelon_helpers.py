@@ -1,36 +1,10 @@
 from django import template
 from django.template import Context, Template
 from echelon.models import SiteSettings, SiteVariable
-# from api import ApiWrapper
 
 register = template.Library()
 
 def custom_variables(value, request):
-    # import socket
-    # """
-    # Checks to see if any api calls are made in a content area and replaces them
-    # with the wanted content.
-
-    # """
-    # try:
-    #     api = ApiWrapper(request)
-    # except socket.error:
-    #     site_information = {
-    #         "shortnames": False,
-    #         "forum_list": False,
-    #         "avatar_url": False,
-    #         'user_name': False,
-    #     }
-
-    # # This could be a performance problem calling the api calls on every page
-    # # even if shortnames, forum_list, etc aren't referenced.
-    # site_information = {
-    #     "shortnames": api.get_shortnames(),
-    #     "forum_list": api.get_forum_list(),
-    #     "avatar_url": api.get_avatar_url(),
-    #     'user_name': api.get_user_name(),
-    # }
-
     """
     Checks to see if any SiteVariable objects are referenced in the value passed
     in to render_variables and replaces them with their value if they are.
@@ -49,5 +23,31 @@ def custom_variables(value, request):
     t = Template(value)
     lookup_table.update(site_information)
     return t.render(Context(lookup_table))
+
+@register.inclusion_tag('breadcrumb.html')
+def breadcrumb_for(category):
+    if category.root_category():
+        category = category.root_category()
+    return {'category': category}
+
+@register.inclusion_tag('child_categories.html')
+def child_categories_of(category):
+    if category.root_category():
+        children = category.root_category().category_set.all()
+    else:
+        children = category.category_set.all()
+    return {'categories': children}
+
+@register.inclusion_tag('pages.html')
+def pages_for(category):
+    if not category.hide_links:
+        return {'pages': category.page_set.all()}
+    return None
+
+@register.inclusion_tag('categories.html')
+def subcategories_for(category):
+    if not category.hide_links:
+        return {'categories': category.category_set.all()}
+    return None
 
 register.filter('custom_variables', custom_variables)

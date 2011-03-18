@@ -1,0 +1,5 @@
+<ul id="sidenav">
+  {% for child in categories %}
+    <li><a href="{{ child.get_absolute_url }}">{{ child }}</a></li>
+  {% endfor %}
+</ul>

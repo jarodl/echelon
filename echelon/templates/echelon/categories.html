@@ -1,0 +1,10 @@
+{% for item in categories %}
+  <div class="resultblock">
+    <span class="resultcat"><a href="{{ item.get_absolute_url }}">{{ item }}</a></span>
+    <ul>
+      {% for page in item.page_set.all %}
+        <li><a href="{{ page.get_absolute_url }}">{{ page }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endfor %}
