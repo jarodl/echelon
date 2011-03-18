@@ -106,11 +106,11 @@ class SiteSettings(models.Model):
     def save(self, *args, **kwargs):
         """
         Overload save to make this class a Singleton.
+
         """
         SiteSettings.objects.all().delete()
         self.id = 1
         super(SiteSettings, self).save(*args, **kwargs)
-
 
 class SiteVariable(models.Model):
     name = models.CharField(max_length=20)
